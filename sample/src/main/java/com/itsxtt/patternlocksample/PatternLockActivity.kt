@@ -1,10 +1,10 @@
-package com.itsxtt.patternlocksample
+package com.msinghal34.patternlocksample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.text.TextUtils
-import com.itsxtt.patternlock.PatternLockView
-import com.itsxtt.patternlocksample.R
+import com.msinghal34.patternlock.PatternLockView
+import com.msinghal34.patternlocksample.R
 import kotlinx.android.synthetic.main.activity_pattern_9x9.*
 import kotlinx.android.synthetic.main.activity_pattern_default.*
 import kotlinx.android.synthetic.main.activity_pattern_jd.*

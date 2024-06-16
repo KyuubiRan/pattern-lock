@@ -1,4 +1,4 @@
-package com.itsxtt.patternlock
+package com.msinghal34.patternlock
 
 import android.content.Context
 import android.graphics.Canvas

@@ -5,12 +5,12 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <com.itsxtt.patternlock.PatternLockView
+    <com.msinghal34.patternlock.PatternLockView
         android:id="@+id/defaultPatternLockView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="72dp"
         android:layout_marginRight="72dp">
-    </com.itsxtt.patternlock.PatternLockView>
+    </com.msinghal34.patternlock.PatternLockView>
 
 </LinearLayout>

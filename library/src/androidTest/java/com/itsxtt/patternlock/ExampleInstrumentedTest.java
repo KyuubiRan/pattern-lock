@@ -1,4 +1,4 @@
-package com.itsxtt.patternlock;
+package com.msinghal34.patternlock;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getContext();
 
-        assertEquals("com.itsxtt.patternlock.test", appContext.getPackageName());
+        assertEquals("com.msinghal34.patternlock.test", appContext.getPackageName());
     }
 }

@@ -1,6 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "maven-publish"
+
+group = 'com.github.msinghal34'
+version = '0.3.0'
 
 android {
     compileSdkVersion 30
@@ -9,8 +13,8 @@ android {
         minSdkVersion 15
         targetSdkVersion 30
 
-        versionCode 2
-        versionName "0.2.0"
+        versionCode 3
+        versionName "0.3.0"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
@@ -38,4 +42,19 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 }
 
-apply plugin: "com.vanniktech.maven.publish"
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.msinghal34'
+                artifactId = 'pattern-lock'
+                version = '0.3.0'
+            }
+        }
+    }
+}
+
+
+

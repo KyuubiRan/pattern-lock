@@ -1,4 +1,4 @@
-package com.itsxtt.patternlock
+package com.msinghal34.patternlock
 
 import android.content.Context
 import android.graphics.*
@@ -10,7 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.GridLayout
 import java.util.*
-
+import kotlin.math.abs
 
 class PatternLockView : GridLayout {
 
@@ -118,7 +118,8 @@ class PatternLockView : GridLayout {
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         when(event?.action) {
             MotionEvent.ACTION_DOWN -> {
-                var hitCell = getHitCell(event.x.toInt(), event.y.toInt())
+                reset()
+                val hitCell = getHitCell(event.x.toInt(), event.y.toInt())
                 if (hitCell == null) {
                     return false
                 } else {
@@ -139,10 +140,19 @@ class PatternLockView : GridLayout {
 
     private fun handleActionMove(event: MotionEvent) {
         var hitCell = getHitCell(event.x.toInt(), event.y.toInt())
-        if (hitCell != null) {
-            if (!selectedCells.contains(hitCell)) {
-                notifyCellSelected(hitCell)
+
+        if ((hitCell != null) && (!selectedCells.contains(hitCell))) {
+            // Notify selection of any previously unselected cells which lie on this line.
+            // Corresponding logic is only applicable for a simple case when both number of rows and columns are 3.
+            if ((selectedCells.size > 0) && (plvRowCount == 3) && (plvColumnCount == 3)) {
+                val lastCell = selectedCells.last()
+                val potentialIndex = (lastCell.index + hitCell.index) / 2
+                if (!selectedCells.contains(cells[potentialIndex]) && (abs(lastCell.index/3 - hitCell.index/3) % 2 == 0) && (abs(lastCell.index%3 - hitCell.index%3) % 2 == 0)) {
+                    notifyCellSelected(cells[potentialIndex])
+                }
             }
+
+            notifyCellSelected(hitCell)
         }
 
         lastX = event.x

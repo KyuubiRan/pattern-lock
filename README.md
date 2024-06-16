@@ -2,8 +2,7 @@
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PatternLockView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6988) 
 
 Awesome pattern lock view for android written in kotlin.
-
-[demo](https://github.com/itsxtt/pattern-lock/tree/master/apk)
+Originally forked from [PatternLockView](https://github.com/l7naive/pattern-lock)
 
 ## Features
 
@@ -34,13 +33,13 @@ allprojects {
 ```
 In your application build file:
 ``` gradle
-implementation 'io.github.itsxtt:pattern-lock:0.2.0'
+implementation 'com.github.msinghal34:pattern-lock:0.3.0'
 ```
 
 ### XML
 
 ``` xml
-<com.itsxtt.patternlock.PatternLockView
+<com.msinghal34.patternlock.PatternLockView
     android:id="@+id/patternLockView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
@@ -99,14 +98,14 @@ patternLockView.setOnPatternListener(new PatternLockView.OnPatternListener() {
 
 #### Built-in Styles
 
-[preview](https://github.com/itsxtt/pattern-lock/blob/master/screenshots/jdstyle.gif)
+[preview](https://github.com/msinghal34/pattern-lock/blob/master/screenshots/jdstyle.gif)
 
 ```
 style="@style/PatternLockView.JDStyle"
 ```
 
 
-[preview](https://github.com/itsxtt/pattern-lock/blob/master/screenshots/indicator.gif)
+[preview](https://github.com/msinghal34/pattern-lock/blob/master/screenshots/indicator.gif)
 
 ```
 style="@style/PatternLockView.WithIndicator"
@@ -125,7 +124,7 @@ plv_selectedDotRadiusRatio | float | 0.3 |
 plv_errorCellBackground | color\|reference | null |
 plv_errorDotColor | color | #ea4954 |
 plv_errorDotRadiusRatio | float | 0.3 |
-plv_lineStyle | enum | common | two values: [common](https://github.com/itsxtt/pattern-lock/blob/master/screenshots/default.gif), [indicator](https://github.com/itsxtt/pattern-lock/blob/master/screenshots/indicator.gif)
+plv_lineStyle | enum | common | two values: [common](https://github.com/msinghal34/pattern-lock/blob/master/screenshots/default.gif), [indicator](https://github.com/msinghal34/pattern-lock/blob/master/screenshots/indicator.gif)
 plv_lineWidth | dimension | 2dp |  
 plv_regularLineColor | color | #587bf4 |
 plv_errorLineColor | color | #ea4954 |
@@ -143,6 +142,10 @@ You can turn the secure mode on or off via call ```enableSecureMode()``` and ```
 
 ## Change Log
 
+### 0.3.0 (2024-06-16)
+* Fixes dot skipping issue for 3x3 pattern
+* Fixes issue with resetting on action down
+
 ### 0.2.0 (2021-10-08)
 * migrate to androidx
 * migrate to mavenCentral
@@ -151,9 +154,6 @@ You can turn the secure mode on or off via call ```enableSecureMode()``` and ```
 * first release
 
 ## License
-
-    Copyright 2018 itsxtt
-    
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
@@ -165,11 +165,3 @@ You can turn the secure mode on or off via call ```enableSecureMode()``` and ```
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-
-
-
-
-
-
-

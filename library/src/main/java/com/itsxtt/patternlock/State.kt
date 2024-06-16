@@ -1,4 +1,4 @@
-package com.itsxtt.patternlock
+package com.msinghal34.patternlock
 
 
 enum class State {
