@@ -1,8 +1,8 @@
-package com.msinghal34.patternlocksample;
+package com.msinghal34.patternlock;
+
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

@@ -1,23 +1,18 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: "maven-publish"
 
-group = 'com.github.msinghal34'
-version = '0.3.0'
-
 android {
-    compileSdkVersion 30
+    namespace = "com.msinghal34.patternlock"
+    compileSdk = 34
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 30
+        minSdk = 21
+        targetSdk = 34
+        versionCode = 4
+        versionName = "0.4.0"
 
-        versionCode 3
-        versionName "0.3.0"
-
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-
+        testInstrumentationRunner = 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -26,20 +21,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    androidExtensions {
-        experimental = true
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 }
 
 afterEvaluate {
@@ -50,11 +50,8 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.msinghal34'
                 artifactId = 'pattern-lock'
-                version = '0.3.0'
+                version = '0.4.0'
             }
         }
     }
 }
-
-
-

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
     <com.msinghal34.patternlock.PatternLockView
         android:id="@+id/ninePatternLockView"
+        style="@style/PatternLockView.WithIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/PatternLockView.WithIndicator"
-        app:plv_spacing="4dp"
         app:plv_columnCount="9"
-        app:plv_rowCount="9">
+        app:plv_rowCount="9"
+        app:plv_spacing="4dp">
 
     </com.msinghal34.patternlock.PatternLockView>
 </LinearLayout>

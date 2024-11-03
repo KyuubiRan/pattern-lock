@@ -28,12 +28,13 @@ Top level build file:
 allprojects {
     repositories {
         mavenCentral()
+    	maven { url 'https://www.jitpack.io' }
     }
 }
 ```
 In your application build file:
 ``` gradle
-implementation 'com.github.msinghal34:pattern-lock:0.3.0'
+implementation 'com.github.msinghal34:pattern-lock:0.4.0'
 ```
 
 ### XML
@@ -134,13 +135,21 @@ plv_columnCount | integer | 3 |
 plv_errorDuration | integer | 400 | millisecond
 plv_hitAreaPaddingRatio | float | 0.2 |
 plv_indicatorSizeRatio | float | 0.2 |
+plv_vibrate | boolean | true
 
 #### Secure Mode
 
 You can turn the secure mode on or off via call ```enableSecureMode()``` and ```disableSecureMode()```.
 
+#### Vibration
+
+You can also turn the vibration on or off via call ```enableVibration()``` and ```disableVibration()```.
 
 ## Change Log
+
+### 0.4.0 (2024-11-02)
+* Adds vibration while pattern drawing and on wrong pattern
+* Updates gradle version
 
 ### 0.3.0 (2024-06-16)
 * Fixes dot skipping issue for 3x3 pattern
