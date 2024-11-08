@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdk = 21
         targetSdk = 34
-        versionCode = 4
-        versionName = "0.4.0"
+        versionCode = 5
+        versionName = "0.5.0"
 
         testInstrumentationRunner = 'androidx.test.runner.AndroidJUnitRunner'
     }
@@ -50,7 +50,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.msinghal34'
                 artifactId = 'pattern-lock'
-                version = '0.4.0'
+                version = '0.5.0'
             }
         }
     }

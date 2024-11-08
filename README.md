@@ -34,7 +34,7 @@ allprojects {
 ```
 In your application build file:
 ``` gradle
-implementation 'com.github.msinghal34:pattern-lock:0.4.0'
+implementation 'com.github.msinghal34:pattern-lock:0.5.0'
 ```
 
 ### XML
@@ -146,6 +146,9 @@ You can turn the secure mode on or off via call ```enableSecureMode()``` and ```
 You can also turn the vibration on or off via call ```enableVibration()``` and ```disableVibration()```.
 
 ## Change Log
+
+### 0.5.0 (2024-11-08)
+* Adds programmatic support to change line style to invisible
 
 ### 0.4.0 (2024-11-02)
 * Adds vibration while pattern drawing and on wrong pattern

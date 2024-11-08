@@ -31,6 +31,7 @@ class PatternLockView : GridLayout {
 
         const val LINE_STYLE_COMMON = 1
         const val LINE_STYLE_INDICATOR = 2
+        const val LINE_STYLE_INVISIBLE = 3
     }
 
     private var regularCellBackground: Drawable? = null
@@ -281,7 +282,6 @@ class PatternLockView : GridLayout {
                 }
             }
         }
-
     }
 
     private fun setupCells() {
@@ -342,6 +342,10 @@ class PatternLockView : GridLayout {
 
     fun disableVibration() {
         vibrate = false
+    }
+
+    fun setLineStyle(lineStyle: Int) {
+        this.lineStyle = lineStyle
     }
 
     private fun getHitCell(x: Int, y: Int): Cell? {
