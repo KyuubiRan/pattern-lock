@@ -79,6 +79,10 @@ class PatternLockView : GridLayout {
     private var lastX: Float = 0f
     private var lastY: Float = 0f
 
+    private val resetCallback = Runnable {
+        reset()
+    }
+
     private var isSecureMode = false
 
     private var onPatternListener: OnPatternListener? = null
@@ -169,6 +173,7 @@ class PatternLockView : GridLayout {
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
+                handler.removeCallbacks(resetCallback)
                 reset()
                 val hitCell = getHitCell(event.x.toInt(), event.y.toInt())
                 if (hitCell == null) {
@@ -286,8 +291,8 @@ class PatternLockView : GridLayout {
     }
 
     private fun setupCells() {
-        for (i in 0..(plvRowCount - 1)) {
-            for (j in 0..(plvColumnCount - 1)) {
+        for (i in 0..<plvRowCount) {
+            for (j in 0..<plvColumnCount) {
                 val cell = Cell(
                     context, i * plvColumnCount + j,
                     regularCellBackground, regularDotColor, regularDotRadiusRatio,
@@ -398,10 +403,7 @@ class PatternLockView : GridLayout {
         linePaint.color = errorLineColor
         invalidate()
 
-        postDelayed({
-            reset()
-        }, errorDuration.toLong())
-
+        postDelayed(resetCallback, errorDuration.toLong())
     }
 
     private fun maybeVibrate(keyCode: Int) {
