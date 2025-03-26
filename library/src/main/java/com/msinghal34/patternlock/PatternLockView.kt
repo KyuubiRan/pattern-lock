@@ -16,10 +16,12 @@ import androidx.core.content.ContextCompat
 import kotlin.math.abs
 import kotlin.math.atan2
 import kotlin.math.sqrt
+import androidx.core.content.withStyledAttributes
 
 class PatternLockView : GridLayout {
 
     companion object {
+
         const val DEFAULT_RADIUS_RATIO = 0.3f
         const val DEFAULT_LINE_WIDTH = 2f // unit: dp
         const val DEFAULT_SPACING = 24f // unit: dp
@@ -84,79 +86,78 @@ class PatternLockView : GridLayout {
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
-        val ta = context.obtainStyledAttributes(attributeSet, R.styleable.PatternLockView)
-        regularCellBackground =
-            ta.getDrawable(R.styleable.PatternLockView_plv_regularCellBackground)
-        regularDotColor = ta.getColor(
-            R.styleable.PatternLockView_plv_regularDotColor,
-            ContextCompat.getColor(context, R.color.regularColor)
-        )
-        regularDotRadiusRatio =
-            ta.getFloat(R.styleable.PatternLockView_plv_regularDotRadiusRatio, DEFAULT_RADIUS_RATIO)
+        context.withStyledAttributes(attributeSet, R.styleable.PatternLockView) {
+            regularCellBackground =
+                getDrawable(R.styleable.PatternLockView_plv_regularCellBackground)
+            regularDotColor = getColor(
+                R.styleable.PatternLockView_plv_regularDotColor,
+                ContextCompat.getColor(context, R.color.regularColor)
+            )
+            regularDotRadiusRatio =
+                getFloat(R.styleable.PatternLockView_plv_regularDotRadiusRatio, DEFAULT_RADIUS_RATIO)
 
-        selectedCellBackground =
-            ta.getDrawable(R.styleable.PatternLockView_plv_selectedCellBackground)
-        selectedDotColor = ta.getColor(
-            R.styleable.PatternLockView_plv_selectedDotColor,
-            ContextCompat.getColor(context, R.color.selectedColor)
-        )
-        selectedDotRadiusRatio = ta.getFloat(
-            R.styleable.PatternLockView_plv_selectedDotRadiusRatio,
-            DEFAULT_RADIUS_RATIO
-        )
+            selectedCellBackground =
+                getDrawable(R.styleable.PatternLockView_plv_selectedCellBackground)
+            selectedDotColor = getColor(
+                R.styleable.PatternLockView_plv_selectedDotColor,
+                ContextCompat.getColor(context, R.color.selectedColor)
+            )
+            selectedDotRadiusRatio = getFloat(
+                R.styleable.PatternLockView_plv_selectedDotRadiusRatio,
+                DEFAULT_RADIUS_RATIO
+            )
 
-        errorCellBackground = ta.getDrawable(R.styleable.PatternLockView_plv_errorCellBackground)
-        errorDotColor = ta.getColor(
-            R.styleable.PatternLockView_plv_errorDotColor,
-            ContextCompat.getColor(context, R.color.errorColor)
-        )
-        errorDotRadiusRatio =
-            ta.getFloat(R.styleable.PatternLockView_plv_errorDotRadiusRatio, DEFAULT_RADIUS_RATIO)
+            errorCellBackground = getDrawable(R.styleable.PatternLockView_plv_errorCellBackground)
+            errorDotColor = getColor(
+                R.styleable.PatternLockView_plv_errorDotColor,
+                ContextCompat.getColor(context, R.color.errorColor)
+            )
+            errorDotRadiusRatio =
+                getFloat(R.styleable.PatternLockView_plv_errorDotRadiusRatio, DEFAULT_RADIUS_RATIO)
 
-        lineStyle = ta.getInt(R.styleable.PatternLockView_plv_lineStyle, 1)
-        lineWidth = ta.getDimensionPixelSize(
-            R.styleable.PatternLockView_plv_lineWidth,
-            TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                DEFAULT_LINE_WIDTH,
-                context.resources.displayMetrics
-            ).toInt()
-        )
-        regularLineColor = ta.getColor(
-            R.styleable.PatternLockView_plv_regularLineColor,
-            ContextCompat.getColor(context, R.color.selectedColor)
-        )
-        errorLineColor = ta.getColor(
-            R.styleable.PatternLockView_plv_errorLineColor,
-            ContextCompat.getColor(context, R.color.errorColor)
-        )
+            lineStyle = getInt(R.styleable.PatternLockView_plv_lineStyle, 1)
+            lineWidth = getDimensionPixelSize(
+                R.styleable.PatternLockView_plv_lineWidth,
+                TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    DEFAULT_LINE_WIDTH,
+                    context.resources.displayMetrics
+                ).toInt()
+            )
+            regularLineColor = getColor(
+                R.styleable.PatternLockView_plv_regularLineColor,
+                ContextCompat.getColor(context, R.color.selectedColor)
+            )
+            errorLineColor = getColor(
+                R.styleable.PatternLockView_plv_errorLineColor,
+                ContextCompat.getColor(context, R.color.errorColor)
+            )
 
-        spacing = ta.getDimensionPixelSize(
-            R.styleable.PatternLockView_plv_spacing,
-            TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                DEFAULT_SPACING,
-                context.resources.displayMetrics
-            ).toInt()
-        )
+            spacing = getDimensionPixelSize(
+                R.styleable.PatternLockView_plv_spacing,
+                TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    DEFAULT_SPACING,
+                    context.resources.displayMetrics
+                ).toInt()
+            )
 
-        plvRowCount = ta.getInteger(R.styleable.PatternLockView_plv_rowCount, DEFAULT_ROW_COUNT)
-        plvColumnCount =
-            ta.getInteger(R.styleable.PatternLockView_plv_columnCount, DEFAULT_COLUMN_COUNT)
+            plvRowCount = getInteger(R.styleable.PatternLockView_plv_rowCount, DEFAULT_ROW_COUNT)
+            plvColumnCount =
+                getInteger(R.styleable.PatternLockView_plv_columnCount, DEFAULT_COLUMN_COUNT)
 
-        errorDuration =
-            ta.getInteger(R.styleable.PatternLockView_plv_errorDuration, DEFAULT_ERROR_DURATION)
-        hitAreaPaddingRatio = ta.getFloat(
-            R.styleable.PatternLockView_plv_hitAreaPaddingRatio,
-            DEFAULT_HIT_AREA_PADDING_RATIO
-        )
-        indicatorSizeRatio = ta.getFloat(
-            R.styleable.PatternLockView_plv_indicatorSizeRatio,
-            DEFAULT_INDICATOR_SIZE_RATIO
-        )
-        vibrate = ta.getBoolean(R.styleable.PatternLockView_plv_vibrate, true)
-
-        ta.recycle()
+            errorDuration =
+                getInteger(R.styleable.PatternLockView_plv_errorDuration, DEFAULT_ERROR_DURATION)
+            hitAreaPaddingRatio = getFloat(
+                R.styleable.PatternLockView_plv_hitAreaPaddingRatio,
+                DEFAULT_HIT_AREA_PADDING_RATIO
+            )
+            indicatorSizeRatio = getFloat(
+                R.styleable.PatternLockView_plv_indicatorSizeRatio,
+                DEFAULT_INDICATOR_SIZE_RATIO
+            )
+            vibrate = getBoolean(R.styleable.PatternLockView_plv_vibrate, true)
+        }
 
         rowCount = plvRowCount
         columnCount = plvColumnCount
@@ -358,7 +359,7 @@ class PatternLockView : GridLayout {
     }
 
     private fun isSelected(view: View, x: Int, y: Int): Boolean {
-        var innerPadding = view.width * hitAreaPaddingRatio
+        val innerPadding = view.width * hitAreaPaddingRatio
         return x >= view.left + innerPadding &&
                 x <= view.right - innerPadding &&
                 y >= view.top + innerPadding &&
@@ -379,7 +380,7 @@ class PatternLockView : GridLayout {
     }
 
     private fun generateSelectedIds(): ArrayList<Int> {
-        var result = ArrayList<Int>()
+        val result = ArrayList<Int>()
         for (cell in selectedCells) {
             result.add(cell.index)
         }
@@ -418,6 +419,7 @@ class PatternLockView : GridLayout {
     }
 
     interface OnPatternListener {
+
         fun onStarted() {}
         fun onProgress(ids: ArrayList<Int>) {}
         fun onComplete(ids: ArrayList<Int>): Boolean
